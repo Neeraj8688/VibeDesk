@@ -1,0 +1,8 @@
+{
+  "name": "VibeDesk",
+  "description": "VibeDesk - Your Mood-Responsive Workspace. An AI-powered dashboard that adapts its interface, music, and advice to your emotional state.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

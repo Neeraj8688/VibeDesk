@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VibeDesk - Mood-Responsive Workspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Outfit', sans-serif;
+        overflow-x: hidden;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      
+      /* Smooth theme transition */
+      html.theme-transitioning {
+        --bg-gradient-1: var(--bg-gradient-1);
+        --bg-gradient-2: var(--bg-gradient-2);
+        --accent-color: var(--accent-color);
+        --blob-1: var(--blob-1);
+        transition: --bg-gradient-1 0.4s ease-in-out, --bg-gradient-2 0.4s ease-in-out, --accent-color 0.4s ease-in-out, --blob-1 0.4s ease-in-out, background 0.4s ease-in-out;
+      }
+      
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* 
+         PERFORMANCE OPTIMIZATION:
+         CSS Keyframes run on the compositor thread, reducing main-thread lag 
+         compared to JS-driven animations for heavy blurred blobs.
+      */
+      @keyframes blob-bounce {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+      }
+
+      @keyframes blob-spin {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.2); }
+        100% { transform: rotate(360deg) scale(1); }
+      }
+
+      .animate-blob-slow {
+        animation: blob-bounce 20s infinite ease-in-out;
+      }
+      .animate-blob-medium {
+        animation: blob-bounce 15s infinite ease-in-out reverse;
+      }
+      .animate-blob-spin {
+        animation: blob-spin 25s infinite linear;
+      }
+
+      /* Music Bar Animation */
+      @keyframes music-bar {
+        0%, 100% { transform: scaleY(0.3); }
+        50% { transform: scaleY(1); }
+      }
+
+      .glass-panel {
+        background: #ffffff;
+        border-radius: 32px;
+        border: none;
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        will-change: transform, box-shadow;
+      }
+
+      .glass-input {
+        background: #F3F4F6;
+        border: 2px solid transparent;
+        color: #111111;
+        border-radius: 16px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+      }
+      .glass-input:focus {
+        background: #FFFFFF;
+        border-color: #E5E7EB;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
+      }
+      .glass-input::placeholder {
+        color: #9CA3AF;
+        font-weight: 400;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-5px) scale(1.01);
+        z-index: 20;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "framer-motion": "https://esm.sh/framer-motion@11.1.7?external=react,react-dom",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
