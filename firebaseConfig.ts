@@ -25,14 +25,15 @@ const getStoredConfig = () => {
 
 const storedConfig = getStoredConfig();
 
+// Use environment variables for sensitive credentials
 const firebaseConfig = storedConfig || {
-  apiKey: "AIzaSyBGiF46UGSaP8trgrLREE6Rqya4U1-F0as",
-  authDomain: "vibedesk-20dd8.firebaseapp.com",
-  projectId: "vibedesk-20dd8",
-  storageBucket: "vibedesk-20dd8.firebasestorage.app",
-  messagingSenderId: "240227258046",
-  appId: "1:240227258046:web:384758f2187a7c56ddd8ef",
-  measurementId: "G-DYLCMYGC3N"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "PASTE_YOUR_FIREBASE_API_KEY",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "PASTE_YOUR_PROJECT_ID",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || ""
 };
 
 // Initialize Firebase (Singleton Pattern)
